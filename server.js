@@ -3,11 +3,13 @@ const app = express();
 const exphbs = require('express-handlebars');
 const connection = require('./config/connection');
 
+const PORT = process.env.PORT || 3001;
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 require('./controllers/index')(app);
 
-app.listen(3001, () => {
-    console.log('Server started on port 3001');
-});
+app.listen(PORT, () =>
+  console.log(`App listening at http://localhost:${PORT} 🚀`)
+);
