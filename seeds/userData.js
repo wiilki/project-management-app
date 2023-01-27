@@ -30,4 +30,4 @@ const userData = [
 
 const seedUsers = () => User.bulkcreate(userData);
 
-module.export = seedUsers;
+module.exports = seedUsers;
