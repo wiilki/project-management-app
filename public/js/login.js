@@ -23,7 +23,9 @@ const signupFormHandler = async (event) => {
     event.preventDefault(); 
 
     const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#emal-signup').value.trim();  const password = document.querySelector('#password-signup').value .trim(); 
+    const email = document.querySelector('#email-signup').value.trim();  
+    const password = document.querySelector('#password-signup').value.trim(); 
+    console.log(usenrame, email, password); 
 
     if (username && email && password) {
         const response = await fetch ('/api/users', {
@@ -37,8 +39,8 @@ const signupFormHandler = async (event) => {
         } else {
             alert('Failed to sign up.');
         }
-        }
-    };
+    }
+};
 
     document 
         .querySelector('.login-form')
