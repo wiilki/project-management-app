@@ -52,3 +52,7 @@ User.init(
 );
 
 module.exports = User;
+
+
+
+// MAYBE ADD A ROLE COLUMN. (eg. admin, manager, team member, etc..)
