@@ -77,7 +77,7 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
-=======
+
 router.get('/', (req, res) => {});
 router.get('/login', (req, res) => {res.render('login')});
 

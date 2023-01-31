@@ -33,7 +33,7 @@ router.get('/login', (req, res) => {
 
 
 module.exports = router;
-=======
+
 router.get('/login', (req, res) => {
     res.render('login');
 });
