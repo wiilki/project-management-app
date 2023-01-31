@@ -77,3 +77,16 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
+=======
+router.get('/', (req, res) => {});
+router.get('/login', (req, res) => {res.render('login')});
+
+router.post('/login', (req, res) => {
+    console.log(req.body)
+});
+
+router.post('/', (req, res) => {
+    console.log(req.body)
+});
+
+module.exports = router

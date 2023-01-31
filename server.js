@@ -16,6 +16,8 @@ const hbs = exphbs.create({ helpers });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.use(express.static('public'));
+app.use(express.json());
 
 // const sess = {
 //   secret: 'super super secret',

@@ -1,5 +1,6 @@
 // const homeRoutes = require('./homeRoutes');
 
+
 // module.exports = function(app) {
 //     app.use('/', homeRoutes);
 // };
@@ -13,3 +14,10 @@ router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
 
 module.exports = router;
+=======
+const apiRoutes = require('./api/index.js');
+
+module.exports = function(app) {
+    app.use('/', homeRoutes);
+    app.use('/api', apiRoutes);
+
