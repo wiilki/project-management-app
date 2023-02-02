@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "../../project-manager-applicationn"
+		},
+		{
+			"path": "../config"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../db"
+		},
+		{
+			"path": "../public"
+		},
+		{
+			"path": "../seeds"
+		},
+		{
+			"path": "../models"
+		},
+		{
+			"path": "../utils"
+		},
+		{
+			"path": "../views"
+		}
+	],
+	"settings": {}
+}

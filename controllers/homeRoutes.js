@@ -1,39 +1,34 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Post, User } = require('../models');
+const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
-  try {
-    const dbProject = await User.findAll();
-    console.log(dbProject);
-    // const projects = dbProject.map((project) => {
-    //   project.get({ plain: true });
-    // });
-    res.json(dbProjects);
-    // res.render('homepage', {
-    //   projects,
-    //   //   //loggedIn: req.session.loggedIn,
-    // });
-  } catch (err) {
-    res.status(500).json(err);
+router.get('/', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
   }
-});
-
-router.get('/signup', (req, res) => {
-  res.render('signup');
-});
-
-router.get('/login', (req, res) => {
-  //   if (req.session.loggedIn) {
-  //     res.redirect('/');
-  //     return;
-  //   }
 
   res.render('login');
 });
 
+// Use withAuth middleware to prevent access to route
+router.get('/dashboard', withAuth, async (req, res) => {
+  res.render('dashboard', {});
+});
+
+router.get('/signup', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('signup');
+});
 
 module.exports = router;
 
 router.get('/login', (req, res) => {
-    res.render('login');
+  res.render('login');
 });

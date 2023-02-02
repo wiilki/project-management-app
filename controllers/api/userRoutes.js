@@ -1,43 +1,25 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-const withAuth = require('../../utils/auth');
 
-// for test (have user in database or not)
-router.get('/', (req, res) => {
-  User.findAll({
-    attributes: { exclude: ['[password'] },
-  })
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-// create user
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    });
-    // req.session.save(() => {
-    //   req.session.user_id = userData.id;
-    //   req.session.logged_in = true;
+    const userData = await User.create(req.body);
 
-    res.status(200).json(userData);
-    // });
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// log in
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
-    console.log(userData);
+
     if (!userData) {
       res
         .status(400)
@@ -65,7 +47,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// log out
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -77,6 +58,7 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
+
 
 router.get('/', (req, res) => {});
 router.get('/login', (req, res) => {res.render('login')});
@@ -90,3 +72,4 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router
+
