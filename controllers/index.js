@@ -10,10 +10,3 @@ module.exports = router;
 
 
 // const apiRoutes = require('./api/index.js');
-
-module.exports = function(app) {
-    app.use('/', homeRoutes);
-    app.use('/api', apiRoutes);
-
-};
-
