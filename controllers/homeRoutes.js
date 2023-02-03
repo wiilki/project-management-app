@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     return;
   }
 
-  res.render('login');
+  res.render('login', { layout: 'landing' });
 });
 
 // Use withAuth middleware to prevent access to route
@@ -53,11 +53,11 @@ router.get('/signup', (req, res) => {
     return;
   }
 
-  res.render('signup');
+  res.render('signup', { layout: 'landing' });
+});
+
+router.get('/login', (req, res) => {
+  res.render('login', { layout: 'landing' });
 });
 
 module.exports = router;
-
-router.get('/login', (req, res) => {
-  res.render('login');
-});
