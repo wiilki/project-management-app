@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Project, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
@@ -9,12 +9,41 @@ router.get('/', (req, res) => {
     return;
   }
 
-  res.render('login');
+  res.render('login', { layout: 'landing' });
 });
 
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
-  res.render('dashboard', {});
+  Project.findAll({
+    attributes: [
+      'id',
+      'title',
+      'company_name',
+      'description',
+      'starting_date',
+      'progress',
+      'issues',
+      'deadline',
+      'user_id',
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['name'],
+      },
+    ],
+  })
+    .then((dbProjectData) => {
+      const projects = dbProjectData.map((project) =>
+        project.get({ plain: true })
+      );
+      // res.render('homepage', { projects }); //loggedIn: req.session.loggedIn
+      res.render('dashboard', { projects });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get('/signup', (req, res) => {
@@ -24,11 +53,11 @@ router.get('/signup', (req, res) => {
     return;
   }
 
-  res.render('signup');
+  res.render('signup', { layout: 'landing' });
+});
+
+router.get('/login', (req, res) => {
+  res.render('login', { layout: 'landing' });
 });
 
 module.exports = router;
-
-router.get('/login', (req, res) => {
-  res.render('login');
-});

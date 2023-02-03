@@ -9,17 +9,37 @@ const withAuth = require('../../utils/auth');
 
 // get all projects
 
-router.get('/', async (req, res) => {
-  try {
-    const projectAll = await Project.findAll();
-    res.json(projectAll);
-    //res.render('project', projectAll);
-    //res.status(200).json(projectAll);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+router.get('/', (req, res) => {
+  Project.findAll({
+    attributes: [
+      'id',
+      'title',
+      'company_name',
+      'description',
+      'starting_date',
+      'progress',
+      'issues',
+      'deadline',
+      'user_id',
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['name'],
+      },
+    ],
+  })
+    .then((dbProjectData) => {
+      const projects = dbProjectData.map((project) =>
+        project.get({ plain: true })
+      );
+      res.render('dashboard', { projects }); //loggedIn: req.session.loggedIn
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
-
 // // get project by id
 // router.get('/:id', withAuth, async (req, res) => {
 //   try {
