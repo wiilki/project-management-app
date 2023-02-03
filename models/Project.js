@@ -15,23 +15,12 @@ Project.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    company_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+
     description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    starting_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     progress: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    issues: {
       type: DataTypes.STRING,
       allowNull: false,
     },

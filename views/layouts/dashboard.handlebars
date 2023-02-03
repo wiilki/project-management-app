@@ -2,12 +2,14 @@
   <nav>
     <a href='/'>Home</a>
     {{#if loggedIn}}
-    <button id='logout' class='btn-no-style'>Logout</button>
+    <a href="/dashboard">Dashboard</a>
+    <button class="no-button" id="logout">Logout</button>
     {{else}}
     <a href='/login'>Login</a>
     {{/if}}
   </nav>
 </header>
+
 
 <main>
   <aside>
@@ -45,7 +47,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Dashboard</a></li>
-        <li><a href="#">Unfinished Project</a></li>
+        <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
         <li><a href="#">Completed Project</a></li>
         <li><a href="#">Projects with Issues</a></li>
         <li><a href="#">Projects from Will</a></li>
@@ -65,7 +67,7 @@
       <h2>Logo</h2>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">Dashboard</a></li>
-        <li><a href="#section2">Unfinished Project</a></li>
+        <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
         <li><a href="#section3">Completed Project</a></li>
         <li><a href="#section3">Projects with Issues</a></li>
         <li><a href="#section4">Projects from Will</a></li>
