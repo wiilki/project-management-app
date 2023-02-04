@@ -1,27 +1,27 @@
 [
   {
-    "name": "Will",
-    "email": "user1@gmail.com",
-    "password": "123456"
-  },
-  {
     "name": "Jose",
-    "email": "user2@gmail.com",
-    "password": "123456"
-  },
-  {
-    "name": "Mab",
-    "email": "user3@gmail.com",
-    "password": "123456"
-  },
-  {
-    "name": "Francisco",
-    "email": "user4@gmail.com",
-    "password": "123456"
+    "email": "JoseA@gmail.com",
+    "password": "12345678"
   },
   {
     "name": "Dean",
-    "email": "user5@gmail.com",
-    "password": "123456"
+    "email": "DPaul@gmail.com",
+    "password": "12345678"
+  },
+  {
+    "name": "Mab",
+    "email": "MabC@gmail.com",
+    "password": "12345678"
+  },
+  {
+    "name": "Will",
+    "email": "WillK@gmail.com",
+    "password": "12345678"
+  },
+  {
+    "name": "Francisco",
+    "email": "FrankM@gmail.com",
+    "password": "12345678"
   }
 ]
