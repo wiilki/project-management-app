@@ -1,0 +1,33 @@
+<a href="/dashboard">Go back</a>
+
+<h2>New Project:</h2>
+
+<form class="new-project-form">
+  <div>
+    <label for="project-title">Title:</label>
+    <input class="input" name="project-title" type="text" value="{{project.title}}" />
+  </div>
+
+  <div>
+    <label for="project-content">Description:</label>
+    <input class="textarea" name="project-description" type="text" value="{{project.description}}" />
+  </div>
+
+  <div>
+    Progress: <select name="progress" id="progress">
+      <option value="issues">Issues</option>
+      <option value="unfinished">In Progress</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="project-deadline">Deadline date:
+      <input type="date" name="project-deadline" type="date" />
+    </label>
+  </div>
+
+  <button class="new-project-btn" type="submit">Submit</button>
+</form>
+
+
+<script src="/js/newProject.js"></script>

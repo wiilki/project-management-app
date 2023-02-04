@@ -1,0 +1,9 @@
+{{#each projects as |project|}}
+
+<a href="/projects/{{id}}">
+    {{> projectData project }}
+</a>
+
+{{else}}
+<h3>No projects</h3>
+{{/each}}
