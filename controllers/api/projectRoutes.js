@@ -19,8 +19,8 @@ router.post("/", withAuth, (req, res) => {
   Project.create({
     title: req.body.title,
     description: req.body.description,
-    progress: req.session.progress,
-    deadline: req.session.deadline,
+    progress: req.body.progress,
+    deadline: req.body.deadline,
     user_id: req.session.user_id,
   })
     .then((projectData) => res.json(projectData))

@@ -9,7 +9,7 @@ router.get('/create/', withAuth, (req, res) => {
       'id',
       'title',
       'description',
-      // 'progress',
+      'progress',
       'deadline'
     ],
     include: [

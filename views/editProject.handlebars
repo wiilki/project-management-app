@@ -1,3 +1,7 @@
+<a href="/dashboard">Go back</a>
+
+<h2>Edit Project:</h2>
+
 <form class="edit-project-form">
 
   <div>
@@ -11,20 +15,20 @@
   </div>
 
   <div>
-    Progress: <select name="project-progress" id="project-progress">
-      <option value="unfinished" selected="project-progress">Unfinished</option>
-      <option value="issues" selected="project-progress">Issues</option>
-      <option value="completed" selected="project-progress">Completed</option>
+    <label for="project-progress">Progress:</label>
+    <select name="project-progress" id="project-progress">
+      <option value="issues">Issues</option>
+      <option value="unfinished">In Progress</option>
+      <option value="completed">Completed</option>
     </select>
   </div>
 
   <div>
-    <label for="project-deadline">Start date:</label>
-
-    <input type="date" id="project-deadline" name="project-deadline">
+    <label for="project-deadline">Deadline date: </label>
+    <input type="date" name="project-deadline" id="project-deadline" />
   </div>
 
-    <button class="edit-project-btn" type="submit">+ New Project</button>
+    <button class="edit-project-btn" type="submit">Save</button>
 </form>
 
 <script src="/js/editProject.js"></script>
