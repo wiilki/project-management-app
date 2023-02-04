@@ -18,11 +18,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
     attributes: [
       'id',
       'title',
-      'company_name',
       'description',
-      'starting_date',
       'progress',
-      'issues',
       'deadline',
       'user_id',
     ],
@@ -59,5 +56,6 @@ router.get('/signup', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('login', { layout: 'landing' });
 });
+
 
 module.exports = router;
