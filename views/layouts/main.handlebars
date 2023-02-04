@@ -1,34 +1,59 @@
+<!DOCTYPE html>
 <html lang='en'>
 
 <head>
-  <meta charset='UTF-8' />
-  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' />
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
-
   <title>Project Manager</title>
 </head>
 
-<header>
+<body>
   <nav>
-    <a href='/'>Home</a>
+    <a href="/">Home</a>
     {{#if loggedIn}}
-    <a href="/dashboard">Dashboard</a>
-    <button class="no-button" id="logout">Logout</button>
+    <button id="logout" class="btn-no-style">Logout</button>
     {{else}}
-    <a href='/login'>Login</a>
+    <a href="/login">Logout</a>
     {{/if}}
   </nav>
-</header>
+
+<main>
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                          
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/dashboard">All Projects</a></li>
+        <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
+        <li><a href="/dashboard/completed">Completed Project</a></li>
+        <li><a href="/dashboard/issues">Projects with Issues</a></li>
+        <li><a href="/dashboard/will">Projects from Will</a></li>
+        <li><a href="/dashboard/jose">Projects from Jose</a></li>
+        <li><a href="/dashboard/mab">Projects from Mab</a></li>
+        <li><a href="/dashboard/francisco">Projects from Francisco</a></li>
+        <li><a href="/dashboard/dean">Projects from Dean</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>Logo</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="/dashboard">All Projects</a></li>
+        <li class="active"><a href="/dashboard">All Projects</a></li>
         <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
         <li><a href="/dashboard/completed">Completed Project</a></li>
         <li><a href="/dashboard/issues">Projects with Issues</a></li>
@@ -42,15 +67,13 @@
       <a href="/dashboard/create/"><button id="create-post">+ New Project</button></a>
     </div>
 
-    <body>
+    <div class="col-sm-9">
       {{{body}}}
-
-    </body>
-  </div>
-
-  {{#if logged_in}}
+    </div>
+</main>
+  {{#if loggedIn}}
   <script src='/js/logout.js'></script>
   <script src="/js/newProject.js"></script>
   {{/if}}
-
+</body>
 </html>
