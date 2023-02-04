@@ -35,7 +35,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         project.get({ plain: true })
       );
       // res.render('homepage', { projects }); //loggedIn: req.session.loggedIn
-      res.render('layouts/dashboard', { projects });
+      res.render('dashboard', { projects });
     })
     .catch((err) => {
       console.log(err);

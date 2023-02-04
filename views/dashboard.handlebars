@@ -1,0 +1,12 @@
+{{#if projects.length}}
+<div>
+    {{#each projects as |project|}}
+    <a href="/dashboard/edit/{{project.id}}">
+        {{> projectData project}}
+    </a>
+    {{/each}}
+
+    {{else}}
+    <h3>No Projects</h3>
+</div
+{{/if}}

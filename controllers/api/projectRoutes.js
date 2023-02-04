@@ -1,16 +1,11 @@
 const router = require("express").Router();
-const { Project, User, Comment } = require("../../models");
+const { Project, User } = require("../../models");
 const sequelize = require("../../config/connection");
 const withAuth = require("../../utils/auth");
 
 router.get("/", (req, res) => {
   Project.findAll({
-    include: [
-      {
-        model: Comment,
-        include: { model: User },
-      },
-      { model: User },
+    include: [ { model: User },
     ],
   })
     .then((projectData) => res.json(projectData))
@@ -24,6 +19,8 @@ router.post("/", withAuth, (req, res) => {
   Project.create({
     title: req.body.title,
     description: req.body.description,
+    progress: req.session.progress,
+    deadline: req.session.deadline,
     user_id: req.session.user_id,
   })
     .then((projectData) => res.json(projectData))
@@ -36,13 +33,7 @@ router.post("/", withAuth, (req, res) => {
 router.get("/:id", (req, res) => {
   Project.findOne({
     where: { id: req.params.id },
-    include: [
-      {
-        model: Comment,
-        include: { model: User },
-      },
-      { model: User },
-    ],
+    include: [{ model: User }],
   })
     .then((projectData) => {
       if (!projectData) {
@@ -62,6 +53,8 @@ router.put("/:id", withAuth, (req, res) => {
     {
       title: req.body.title,
       description: req.body.description,
+      progress: req.body.progress,
+      deadline: req.body.deadline,
     },
     { where: { id: req.params.id } }
   )

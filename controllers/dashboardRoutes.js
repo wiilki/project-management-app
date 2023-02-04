@@ -1,23 +1,69 @@
-const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Project, User } = require('../models');
+const router = require("express").Router();
+const sequelize = require("../config/connection");
+const { Project, User } = require("../models");
 const withAuth = require('../utils/auth');
 
-router.get('/', (req, res) => {
-  console.log(req.session);
-
+router.get('/create/', withAuth, (req, res) => {
   Project.findAll({
-    include: [{ model: User }],
+    attributes: [
+      'id',
+      'title',
+      'description',
+      // 'progress',
+      'deadline'
+    ],
+    include: [
+      { model: User },
+    ]
+  })
+    .then(projectData => {
+      // serialize data before passing to template
+      const projects = projectData.map(project => project.get({ plain: true }));
+      res.render('newProject', { projects, loggedIn: true });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/edit/:id', withAuth, (req, res) => {
+  Project.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(projectData => {
+      if (!projectData) {
+        res.status(404).json({ message: 'No project found with this id' });
+        return;
+      }
+
+      const project = projectData.get({ plain: true });
+
+      res.render('editProject', {
+        project,
+        loggedIn: true
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/unfinished', withAuth, async (req, res) => {
+  Project.findAll({
+    where: { progress: "unfinished" },
+    include: [
+      { model: User }],
   })
     .then((projectData) => {
       const projects = projectData.map((project) =>
         project.get({ plain: true })
       );
 
-      res.render('dashboard', {
-        projects,
-        loggedIn: req.session.loggedIn,
-      });
+      res.render('dashboard', { projects });
     })
     .catch((err) => {
       console.log(err);
@@ -25,20 +71,18 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/unfinished', (req, res) => {
-  console.log(req.session);
-
+router.get('/issues', withAuth, async (req, res) => {
   Project.findAll({
-    where: { progress: 'unfinished' },
-    include: [{ model: User }],
+    where: { progress: "issues" },
+    include: [
+      { model: User }],
   })
     .then((projectData) => {
-      const projects = projectData.map(project => project.get({ plain: true }));
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
 
-      res.render('unfinished', {
-        projects,
-        loggedIn: req.session.loggedIn,
-      });
+      res.render('dashboard', { projects });
     })
     .catch((err) => {
       console.log(err);
@@ -46,20 +90,18 @@ router.get('/unfinished', (req, res) => {
     });
 });
 
-router.get('/issues', (req, res) => {
-  console.log(req.session);
-
+router.get('/completed', withAuth, async (req, res) => {
   Project.findAll({
-    where: { progress: 'issues' },
-    include: [{ model: User }],
+    where: { progress: "completed" },
+    include: [
+      { model: User }],
   })
     .then((projectData) => {
-      const projects = projectData.map(project => project.get({ plain: true }));
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
 
-      res.render('issues', {
-        projects,
-        loggedIn: req.session.loggedIn,
-      });
+      res.render('dashboard', { projects });
     })
     .catch((err) => {
       console.log(err);
@@ -67,25 +109,111 @@ router.get('/issues', (req, res) => {
     });
 });
 
-router.get('/completed', (req, res) => {
-  console.log(req.session);
-
+router.get('/will', withAuth, async (req, res) => {
   Project.findAll({
-    where: { progress: 'completed' },
-    include: [{ model: User }],
+    include: [
+      {
+        model: User,
+        where: { name: "Will" }
+      }]
+
   })
     .then((projectData) => {
-      const projects = projectData.map(project => project.get({ plain: true }));
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
 
-      res.render('completed', {
-        projects,
-        loggedIn: req.session.loggedIn,
-      });
+      res.render('dashboard', { projects });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
+
+router.get('/jose', withAuth, async (req, res) => {
+  Project.findAll({
+    include: [
+      {
+        model: User,
+        where: { name: "Jose" }
+      }]
+  })
+    .then((projectData) => {
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
+
+      res.render('dashboard', { projects });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/mab', withAuth, async (req, res) => {
+  Project.findAll({
+    include: [
+      {
+        model: User,
+        where: { name: "Mab" }
+      }]
+  })
+    .then((projectData) => {
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
+
+      res.render('dashboard', { projects });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/francisco', withAuth, async (req, res) => {
+  Project.findAll({
+    include: [
+      {
+        model: User,
+        where: { name: "Francisco" }
+      }]
+  })
+    .then((projectData) => {
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
+
+      res.render('dashboard', { projects });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/dean', withAuth, async (req, res) => {
+  Project.findAll({
+    include: [
+      {
+        model: User,
+        where: { name: "Dean" }
+      }]
+  })
+    .then((projectData) => {
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
+
+      res.render('dashboard', { projects });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 
 module.exports = router;
