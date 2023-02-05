@@ -15,7 +15,7 @@
   <nav>
     <a href="/">Home</a>
     {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
+    <button class="no-button" id="logout">Logout</button>
     {{else}}
     <a href="/login">Logout</a>
     {{/if}}
@@ -35,9 +35,10 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav" id="navbar">
             <li class="active"><a href="/dashboard">All Projects</a></li>
-            <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
-            <li><a href="/dashboard/completed">Completed Project</a></li>
+            <li><a href="/dashboard/unfinished">Unfinished Projects</a></li>           
             <li><a href="/dashboard/issues">Projects with Issues</a></li>
+             <li><a href="/dashboard/inreview">Projects In Review</a></li>
+             <li><a href="/dashboard/completed">Completed Projects</a></li>
 
             {{#each users}}
             <li><a href="/dashboard/{{this.name}}">{{this.name}}</a></li>
@@ -54,9 +55,10 @@
           <h2>Logo</h2>
           <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="/dashboard">All Projects</a></li>
-            <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
-            <li><a href="/dashboard/completed">Completed Project</a></li>
+          <li><a href="/dashboard/unfinished">Unfinished Projects</a></li>           
             <li><a href="/dashboard/issues">Projects with Issues</a></li>
+             <li><a href="/dashboard/inreview">Projects In Review</a></li>
+             <li><a href="/dashboard/completed">Completed Projects</a></li>
 
             {{#each users}}
             <li><a href="/dashboard/{{this.name}}">{{this.name}}</a></li>
@@ -70,11 +72,13 @@
         <div class="col-sm-9">
           {{{body}}}
         </div>
+
   </main>
+
   {{#if loggedIn}}
   <script src='/js/logout.js'></script>
-    <script src='/js/navbar.js'></script>
   {{/if}}
+
 </body>
 
 </html>

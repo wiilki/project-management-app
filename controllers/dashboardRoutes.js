@@ -54,7 +54,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
 
 router.get('/unfinished', withAuth, async (req, res) => {
   Project.findAll({
-    where: { progress: "unfinished" },
+    where: { progress: "In Progress" },
     include: [
       { model: User }],
   })
@@ -73,7 +73,26 @@ router.get('/unfinished', withAuth, async (req, res) => {
 
 router.get('/issues', withAuth, async (req, res) => {
   Project.findAll({
-    where: { progress: "issues" },
+    where: { progress: "Issues" },
+    include: [
+      { model: User }],
+  })
+    .then((projectData) => {
+      const projects = projectData.map((project) =>
+        project.get({ plain: true })
+      );
+
+      res.render('dashboard', { projects });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/inreview', withAuth, async (req, res) => {
+  Project.findAll({
+    where: { progress: "In Review" },
     include: [
       { model: User }],
   })
@@ -92,7 +111,7 @@ router.get('/issues', withAuth, async (req, res) => {
 
 router.get('/completed', withAuth, async (req, res) => {
   Project.findAll({
-    where: { progress: "completed" },
+    where: { progress: "Completed" },
     include: [
       { model: User }],
   })

@@ -14,6 +14,10 @@ const PORT = process.env.PORT || 3001;
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
+const store = new SequelizeStore({ db: sequelize });
+
+store.sync();
+
 const sess = {
   secret: "for group 6 only",
   cookie: {
@@ -23,10 +27,9 @@ const sess = {
   resave: false,
   rolling: true,
   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize,
-//   }),
+  store,
 };
+
 
 app.use(session(sess));
 
@@ -43,3 +46,4 @@ app.use(routes);
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
+
