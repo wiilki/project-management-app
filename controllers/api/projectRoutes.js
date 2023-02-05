@@ -1,12 +1,11 @@
-const router = require("express").Router();
-const { Project, User } = require("../../models");
-const sequelize = require("../../config/connection");
-const withAuth = require("../../utils/auth");
+const router = require('express').Router();
+const { Project, User } = require('../../models');
+const sequelize = require('../../config/connection');
+const withAuth = require('../../utils/auth');
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   Project.findAll({
-    include: [ { model: User },
-    ],
+    include: [{ model: User }],
   })
     .then((projectData) => res.json(projectData))
     .catch((err) => {
@@ -15,8 +14,8 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", withAuth, async (req, res) => {
-  const newProject = await Project.create({
+router.post('/', withAuth, (req, res) => {
+  Project.create({
     title: req.body.title,
     description: req.body.description,
     progress: req.body.progress,
@@ -30,14 +29,14 @@ router.post("/", withAuth, async (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   Project.findOne({
     where: { id: req.params.id },
     include: [{ model: User }],
   })
     .then((projectData) => {
       if (!projectData) {
-        res.status(404).json({ message: "No projects found with this id" });
+        res.status(404).json({ message: 'No projects found with this id' });
         return;
       }
       res.json(projectData);
@@ -48,7 +47,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", withAuth, (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Project.update(
     {
       title: req.body.title,
@@ -60,7 +59,7 @@ router.put("/:id", withAuth, (req, res) => {
   )
     .then((projectData) => {
       if (!projectData) {
-        res.status(404).json({ message: "No projects found with this id" });
+        res.status(404).json({ message: 'No projects found with this id' });
         return;
       }
       res.json(projectData);
@@ -71,13 +70,13 @@ router.put("/:id", withAuth, (req, res) => {
     });
 });
 
-router.delete("/:id", withAuth, (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   Project.destroy({
     where: { id: req.params.id },
   })
     .then((projectData) => {
       if (!projectData) {
-        res.status(404).json({ message: "No projects found with this id" });
+        res.status(404).json({ message: 'No projects found with this id' });
         return;
       }
       res.json(projectData);

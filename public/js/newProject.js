@@ -1,9 +1,9 @@
 async function newFormHandler(event) {
   event.preventDefault();
 
-  const title = document.querySelector('input[name="project-title"]').value.trim();
-  const description = document.querySelector('input[name="project-description"]').value.trim();
-  const select = document.querySelector('select[name="project-progress"]');
+  const title = document.querySelector('input[name="new-project-title"]').value.trim();
+  const description = document.querySelector('input[name="new-project-description"]').value.trim();
+  const select = document.querySelector('select[name="new-project-progress"]');
   const deadline = document.querySelector('input[type="date"]').value.trim();
 
   const progress = select.options[select.selectedIndex].value;

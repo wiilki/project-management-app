@@ -3,7 +3,7 @@ const seedUsers = require('./userData');
 
 const sequelize = require('../config/connection');
 
-const seedAll = async () => {
+const seedDatabase = async () => {
   await sequelize.sync({ force: true });
     console.log('\n----- DATABASE SYNCED -----\n');
   
@@ -16,4 +16,4 @@ const seedAll = async () => {
   process.exit(0);
 };
 
-seedAll();
+seedDatabase();

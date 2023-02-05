@@ -5,27 +5,27 @@
 <form class="new-project-form">
 
   <div>
-    <label for="project-title">Title:</label>
-    <input class="input" name="project-title" type="text" value="{{project.title}}" />
+    <label for="new-project-title">Title:</label>
+    <input class="input" name="new-project-title" type="text" value="{{project.title}}" />
   </div>
 
   <div>
-    <label for="project-description">Description:</label>
-    <input class="textarea" name="project-description" type="text" value="{{project.description}}" />
+    <label for="new-project-description">Description:</label>
+    <input class="textarea" name="new-project-description" type="text" value="{{project.description}}" />
   </div>
 
   <div>
-    <label for="project-progress">Progress:</label>
-    <select name="project-progress" id="project-progress">
-      <option value="issues">Issues</option>
+    <label for="new-project-progress">Progress:</label>
+    <select name="new-project-progress" id="new-project-progress">
       <option value="unfinished">In Progress</option>
+      <option value="issues">Issues</option>      
       <option value="completed">Completed</option>
     </select>
   </div>
 
   <div>
-    <label for="project-deadline">Deadline date: </label>
-    <input type="date" name="project-deadline" id="project-deadline" />
+    <label for="new-project-deadline">Deadline date: </label>
+    <input type="date" name="new-project-deadline" id="new-project-deadline" />
   </div>
 
     <button class="new-project-btn" type="submit">Save</button>
