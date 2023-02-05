@@ -1,4 +1,6 @@
-[
+const { Project } = require('../models');
+
+const projectData = [
   {
     "title": "Project Bishop Ring",
     "description": "Space Habitat concept for living in space.",
@@ -30,3 +32,8 @@
     "deadline": "04/01/2090"
   }
 ]
+
+
+const seedProjects = () => Project.bulkCreate(projectData);
+
+module.exports = seedProjects;

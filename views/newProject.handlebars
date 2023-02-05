@@ -3,13 +3,14 @@
 <h2>New Project:</h2>
 
 <form class="new-project-form">
+
   <div>
     <label for="project-title">Title:</label>
     <input class="input" name="project-title" type="text" value="{{project.title}}" />
   </div>
 
   <div>
-    <label for="project-content">Description:</label>
+    <label for="project-description">Description:</label>
     <input class="textarea" name="project-description" type="text" value="{{project.description}}" />
   </div>
 
@@ -18,6 +19,7 @@
     <select name="project-progress" id="project-progress">
       <option value="issues">Issues</option>
       <option value="unfinished">In Progress</option>
+      <option value="completed">Completed</option>
     </select>
   </div>
 
@@ -26,8 +28,7 @@
     <input type="date" name="project-deadline" id="project-deadline" />
   </div>
 
-  <button class="new-project-btn" type="submit">Submit</button>
+    <button class="new-project-btn" type="submit">Save</button>
 </form>
-
 
 <script src="/js/newProject.js"></script>

@@ -7,27 +7,27 @@ async function newFormHandler(event) {
   const deadline = document.querySelector('input[type="date"]').value.trim();
 
   const progress = select.options[select.selectedIndex].value;
-  
-  const response = await fetch(`/api/projects`, {
-    method: "POST",
-    body: JSON.stringify({
-      title,
-      description,
-      progress,
-      deadline
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 
-  if (response.ok) {
-    document.location.replace("/dashboard");
-  } else {
-    alert(response.statusText);
-  }
+  const response = await fetch(`/api/projects`, {
+      method: 'POST',
+      body: JSON.stringify({
+          title,
+          description,
+          progress,
+          deadline
+      }),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert(response.statusText);
+    }
 }
 
 document
-  .querySelector(".new-project-form")
-  .addEventListener("submit", newFormHandler);
+.querySelector('.new-project-form')
+.addEventListener('submit', newFormHandler);

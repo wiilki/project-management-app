@@ -15,8 +15,8 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", withAuth, (req, res) => {
-  Project.create({
+router.post("/", withAuth, async (req, res) => {
+  const newProject = await Project.create({
     title: req.body.title,
     description: req.body.description,
     progress: req.body.progress,
