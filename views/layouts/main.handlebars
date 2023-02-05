@@ -21,59 +21,59 @@
     {{/if}}
   </nav>
 
-<main>
-<nav class="navbar navbar-inverse visible-xs">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                          
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/dashboard">All Projects</a></li>
-        <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
-        <li><a href="/dashboard/completed">Completed Project</a></li>
-        <li><a href="/dashboard/issues">Projects with Issues</a></li>
-        <li><a href="/dashboard/will">Projects from Will</a></li>
-        <li><a href="/dashboard/jose">Projects from Jose</a></li>
-        <li><a href="/dashboard/mab">Projects from Mab</a></li>
-        <li><a href="/dashboard/francisco">Projects from Francisco</a></li>
-        <li><a href="/dashboard/dean">Projects from Dean</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  <main>
+    <nav class="navbar navbar-inverse visible-xs">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav" id="navbar">
+            <li class="active"><a href="/dashboard">All Projects</a></li>
+            <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
+            <li><a href="/dashboard/completed">Completed Project</a></li>
+            <li><a href="/dashboard/issues">Projects with Issues</a></li>
 
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-3 sidenav hidden-xs">
-      <h2>Logo</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="/dashboard">All Projects</a></li>
-        <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
-        <li><a href="/dashboard/completed">Completed Project</a></li>
-        <li><a href="/dashboard/issues">Projects with Issues</a></li>
-        <li><a href="/dashboard/will">Projects from Will</a></li>
-        <li><a href="/dashboard/jose">Projects from Jose</a></li>
-        <li><a href="/dashboard/mab">Projects from Mab</a></li>
-        <li><a href="/dashboard/francisco">Projects from Francisco</a></li>
-        <li><a href="/dashboard/dean">Projects from Dean</a></li>
-      </ul>
-      <br>
-      <a href="/dashboard/create/"><button id="create-post">+ New Project</button></a>
-    </div>
+            {{#each users}}
+            <li><a href="/dashboard/{{this.name}}">{{this.name}}</a></li>
+            {{/each}}
 
-    <div class="col-sm-9">
-      {{{body}}}
-    </div>
-</main>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav hidden-xs">
+          <h2>Logo</h2>
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="/dashboard">All Projects</a></li>
+            <li><a href="/dashboard/unfinished">Unfinished Project</a></li>
+            <li><a href="/dashboard/completed">Completed Project</a></li>
+            <li><a href="/dashboard/issues">Projects with Issues</a></li>
+
+            {{#each users}}
+            <li><a href="/dashboard/{{this.name}}">{{this.name}}</a></li>
+            {{/each}}
+
+          </ul>
+          <br>
+          <a href="/dashboard/create/"><button id="create-post">+ New Project</button></a>
+        </div>
+
+        <div class="col-sm-9">
+          {{{body}}}
+        </div>
+  </main>
   {{#if loggedIn}}
   <script src='/js/logout.js'></script>
-  <script src="/js/newProject.js"></script>
+    <script src='/js/navbar.js'></script>
   {{/if}}
 </body>
 
