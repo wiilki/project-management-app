@@ -20,7 +20,7 @@ const sess = {
         // Session will automatically expire in 10 minutes
         expires: 10 * 60 * 1000
   },
-  resave: true,
+  resave: false,
   rolling: true,
   saveUninitialized: true,
   store: new SequelizeStore({
