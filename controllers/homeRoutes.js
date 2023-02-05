@@ -23,15 +23,11 @@ router.get('/dashboard', withAuth, async (req, res) => {
       'deadline',
       'user_id',
     ],
-    include: [
-      {
-        model: User,
-        attributes: ['name'],
-      },
+    include: [{ model: User }
     ],
   })
-    .then((dbProjectData) => {
-      const projects = dbProjectData.map((project) =>
+    .then((projectData) => {
+      const projects = projectData.map((project) =>
         project.get({ plain: true })
       );
       // res.render('homepage', { projects }); //loggedIn: req.session.loggedIn

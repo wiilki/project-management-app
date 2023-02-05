@@ -9,6 +9,3 @@ router.use('/api', apiRoutes);
 router.use('/dashboard', dashboardRoutes);
 
 module.exports = router;
-
-
-// const apiRoutes = require('./api/index.js');
