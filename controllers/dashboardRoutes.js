@@ -136,97 +136,13 @@ router.get('/completed', withAuth, async (req, res) => {
   }
 });
 
-router.get('/will', withAuth, async (req, res) => {
+router.get('/:name', withAuth, async (req, res) => {
+  const name = req.params.name;
   Project.findAll({
     include: [
       {
         model: User,
-        where: { name: "Will" }
-      }]
-
-  })
-    .then((projectData) => {
-      const projects = projectData.map((project) =>
-        project.get({ plain: true })
-      );
-
-      res.render('dashboard', { projects });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get('/jose', withAuth, async (req, res) => {
-  Project.findAll({
-    include: [
-      {
-        model: User,
-        where: { name: "Jose" }
-      }]
-  })
-    .then((projectData) => {
-      const projects = projectData.map((project) =>
-        project.get({ plain: true })
-      );
-
-      res.render('dashboard', { projects });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get('/mab', withAuth, async (req, res) => {
-  Project.findAll({
-    include: [
-      {
-        model: User,
-        where: { name: "Mab" }
-      }]
-  })
-    .then((projectData) => {
-      const projects = projectData.map((project) =>
-        project.get({ plain: true })
-      );
-
-      res.render('dashboard', { projects });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get('/francisco', withAuth, async (req, res) => {
-  Project.findAll({
-    include: [
-      {
-        model: User,
-        where: { name: "Francisco" }
-      }]
-  })
-    .then((projectData) => {
-      const projects = projectData.map((project) =>
-        project.get({ plain: true })
-      );
-
-      res.render('dashboard', { projects });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get('/dean', withAuth, async (req, res) => {
-  Project.findAll({
-    include: [
-      {
-        model: User,
-        where: { name: "Dean" }
+        where: { name: name }
       }]
   })
     .then((projectData) => {

@@ -44,9 +44,9 @@ router.post('/login', asyncHandler(async (req, res) => {
   }
 }));
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.session.destroy(() => {
-    res.status(204).end();
+    res.redirect("/users/login");
   });
 });
 
