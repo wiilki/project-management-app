@@ -1,0 +1,29 @@
+# So You Want to Manage a Project?
+    
+  ## Description
+  
+  This is a generic application designed to help organizations keep track of their current projects.
+  
+  ## Table of Contents
+  
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Credits](#credits)
+  
+  ## Installation
+  
+  No installation required. Visit the [deployed site](https://vast-brook-40513.herokuapp.com/)
+  
+  ## Usage
+  
+* Click Register to sign up or login
+* Click on navigation tabs to view projects with certain criteria
+* Click on the project to edit the details
+* Click "save" or "delete"
+* Click "New Project" on the navigation tab to start new project
+* Add details and click "Submit"
+
+  ## Credits
+
+* [asyncjs](https://www.npmjs.com/package/async)
+* [express-async-handler](https://www.npmjs.com/package/express-async-handler)
