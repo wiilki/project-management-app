@@ -1,21 +1,21 @@
-<a href="/dashboard">Go back</a>
+<a href="/dashboard" type="button" class="btn btn-warning">Go back</a>
 
 <h2>New Project:</h2>
 
 <form class="new-project-form">
 
-  <div>
-    <label for="new-project-title">Title:</label>
-    <input class="input" name="new-project-title" type="text" value="{{project.title}}" />
+  <div class="mb-3">
+    <label for="new-project-title" class="form-label">Title:</label>
+    <input class="input form-control" name="new-project-title" type="text" value="{{project.title}}" id="title-box"/>
   </div>
 
   <div>
-    <label for="new-project-description">Description:</label>
-    <input class="textarea" name="new-project-description" type="text" value="{{project.description}}" />
+    <label for="new-project-description" class="form-label">Description:</label>
+    <input class="textarea form-control" name="new-project-description" type="text" value="{{project.description}}" />
   </div>
 
-  <div>
-    <label for="new-project-progress">Progress:</label>
+  <div class="progress-date">
+    <label for="new-project-progress" class="form-label">Progress:</label>
     <select name="new-project-progress" id="new-project-progress">
       <option value="In Progress">In Progress</option>
       <option value="Issues">Issues Found</option>
@@ -24,12 +24,12 @@
     </select>
   </div>
 
-  <div>
-    <label for="new-project-deadline">Deadline date: </label>
+ <div class="progress-date">
+    <label for="new-project-deadline" class="form-label">Deadline date: </label>
     <input type="date" name="new-project-deadline" id="new-project-deadline" />
   </div>
 
-    <button class="new-project-btn" type="submit">Save</button>
+    <button class="btn btn-success new-project-btn" type="submit">Save</button>
 </form>
 
 <script src="/js/newProject.js"></script>

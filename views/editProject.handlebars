@@ -1,22 +1,22 @@
-<a href="/dashboard">Go back</a>
+<a href="/dashboard" type="button" class="btn btn-warning">Go back</a>
 
 <h2>Edit Project:</h2>
 
 <form class="edit-project-form">
 
   <div>
-    <label for="project-title">Title:</label>
-    <input class="input" name="project-title" type="text" value="{{project.title}}" />
+    <label for="new-project-title" class="form-label">Title:</label>
+    <input class="input form-control" name="new-project-title" type="text" value="{{project.title}}" />
   </div>
 
   <div>
-    <label for="project-description">Description:</label>
-    <input class="textarea" name="project-description" type="text" value="{{project.description}}" />
+    <label for="new-project-description" class="form-label">Description:</label>
+    <input class="textarea form-control" name="project-description" type="text" value="{{project.description}}" />
   </div>
 
-  <div>
-    <label for="project-progress">Progress:</label>
-    <select name="project-progress" id="project-progress">
+  <div class="progress-date">
+    <label for="new-project-progress" class="form-label">Progress:</label>
+    <select name="new-project-progress" id="new-project-progress">
       <option value="In Progress">In Progress</option>
       <option value="Issues">Issues Found</option>
       <option value="In Review">In Review</option>
@@ -24,15 +24,14 @@
     </select>
   </div>
 
-  <div>
-    <label for="project-deadline">Deadline date: </label>
+  <div class="progress-date">
+    <label for="project-deadline" class="form-label">Deadline date: </label>
     <input type="date" name="project-deadline" id="project-deadline" />
   </div>
 
-  <button class="edit-project-btn" type="submit">Save</button>
+  <button class="btn btn-success edit-project-btn " type="submit">Save</button>
+  <button type="button" class="btn btn-danger delete-project-btn">Delete</button>
 </form>
-
-<button type="button" class="delete-project-btn">Delete</button>
 
 <script src="/js/editProject.js"></script>
 <script src="/js/deleteProject.js"></script>
