@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Project, User } = require("../models");
 const withAuth = require("../utils/auth");
+const async = require("async");
 
 router.get("/", (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -13,26 +14,37 @@ router.get("/", (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get("/dashboard", withAuth, async (req, res) => {
-  User.findAll({ include: [{ model: Project }] })
-    .then((userData) => {
-      const users = userData.map((user) => user.get({ plain: true }));
-      Project.findAll({ include: [{ model: User }] })
-        .then((projectData) => {
-          const projects = projectData.map((project) =>
-            project.get({ plain: true })
-          );
-          res.render("dashboard", { users, projects });
+router.get("/dashboard", withAuth, (req, res) => {
+  async.parallel({
+    users: (callback) => {
+      User.findAll({ include: [{ model: Project }] })
+        .then((userData) => {
+          callback(null, userData.map((user) => user.get({ plain: true })));
         })
         .catch((err) => {
-          console.log(err);
-          res.status(500).json(err);
+          callback(err);
         });
-    })
-    .catch((err) => {
+    },
+    projects: (callback) => {
+      Project.findAll({ include: [{ model: User }] })
+        .then((projectData) => {
+          callback(
+            null,
+            projectData.map((project) => project.get({ plain: true }))
+          );
+        })
+        .catch((err) => {
+          callback(err);
+        });
+    },
+  }, (err, results) => {
+    if (err) {
       console.log(err);
       res.status(500).json(err);
-    });
+    } else {
+      res.render("dashboard", results);
+    }
+  });
 });
 
 router.get("/signup", (req, res) => {

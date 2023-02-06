@@ -2,71 +2,50 @@ const router = require('express').Router();
 const { Project, User } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
+const asyncHandler = require('express-async-handler');
 
-router.get('/', (req, res) => {
-  Project.findAll({
+router.get('/', asyncHandler(async (req, res) => {
+  const projectData = await Project.findAll({
     include: [{ model: User }],
-  })
-    .then((projectData) => res.json(projectData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+  });
+  res.json(projectData);
+}));
 
-router.get('/:id', (req, res) => {
-  Project.findOne({
+router.get('/:id', asyncHandler(async (req, res) => {
+  const projectData = await Project.findOne({
     where: { id: req.params.id },
     include: [{ model: User }],
-  })
-    .then((projectData) => {
-      if (!projectData) {
-        res.status(404).json({ message: 'No projects found with this id' });
-        return;
-      }
-      res.json(projectData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.post('/', async (req, res) => {
-  try {
-    const newProject = await Project.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
-    res.json({ newProject, success: true });
-  } catch (err) {
-    res.sendStatus(500).send(err);
+  });
+  if (!projectData) {
+    return res.status(404).json({ message: 'No projects found with this id' });
   }
-});
+  res.json(projectData);
+}));
 
-router.put('/:id', async (req, res) => {
-  try {
-    await Project.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.json({ success: true });
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500).send(err);
-  }
-});
+router.post('/', withAuth, asyncHandler(async (req, res) => {
+  const newProject = await Project.create({
+    ...req.body,
+    user_id: req.session.user_id,
+  });
+  res.json({ newProject, success: true });
+}));
 
-router.delete('/:id', async (req, res) => {
-  // delete one blog by its `id` value
+router.put('/:id', withAuth, asyncHandler(async (req, res) => {
+  await Project.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  });
+  res.json({ success: true });
+}));
+
+router.delete('/:id', withAuth, asyncHandler(async (req, res) => {
   await Project.destroy({
     where: {
       id: req.params.id,
     },
   });
-
-  return res.json({ success: true });
-});
+  res.json({ success: true });
+}));
 
 module.exports = router;
