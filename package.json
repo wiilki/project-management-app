@@ -5,10 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node server/src/server.js",
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "heroku-postbuild": "npm run build",
-    "setup": "cd server && npm install && cd ../client && npm install",
-    "build": "cd client && npm run build",
     "seed": "cd server && npm run seed"
   },
   "repository": {
