@@ -1,33 +1,29 @@
 {
-  "name": "project-manager-application",
+  "name": "pm-app",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/src/app.js",
   "scripts": {
-    "seed": "node seeds/index.js",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wiilki/project-manager-application.git"
+    "start": "node server/src/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wiilki/project-manager-application/issues"
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
   },
-  "homepage": "https://github.com/wiilki/project-manager-application#readme",
   "dependencies": {
-    "async": "^3.2.4",
-    "bcrypt": "^5.0.1",
-    "connect-session-sequelize": "^7.1.2",
-    "dotenv": "^16.0.0",
+    "apollo-server-express": "^3.6.2",
+    "cors": "^2.8.5",
     "express": "^4.17.2",
-    "express-async-handler": "^1.2.0",
-    "express-handlebars": "^6.0.2",
-    "express-session": "^1.17.2",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.15.0"
+    "graphql": "^16.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.30.1",
+    "mongoose": "^6.9.2"
   }
 }
