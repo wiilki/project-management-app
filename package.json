@@ -2,9 +2,9 @@
   "name": "project-manager-application",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/src/app.js",
   "scripts": {
-    "start": "node server/src/server.js",
+    "start": "node server/src/app.js",
     "seed": "cd server && npm run seed"
   },
   "repository": {
