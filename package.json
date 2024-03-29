@@ -4,22 +4,16 @@
   "description": "",
   "main": "server/src/app.js",
   "scripts": {
-    "start": "cd server && npm run start",
+    "start": "node server/src/app.js",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wiilki/project-management-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wiilki/project-management-app/issues"
-  },
-  "homepage": "https://github.com/wiilki/project-management-app#readme",
   "dependencies": {
     "apollo-server-express": "^3.6.2",
     "cors": "^2.8.5",
