@@ -1,0 +1,23 @@
+name: Verify application
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run model tests
+        run: npm test
+      - name: Check JavaScript syntax
+        run: npm run check
+      - name: Build static site
+        run: npm run build
+      - name: Verify deployment assets
+        run: test -f dist/index.html && test -f dist/src/app.js && test -f dist/src/model.js && test -f dist/styles.css
